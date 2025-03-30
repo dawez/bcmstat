@@ -369,6 +369,8 @@ def vcgencmd(args, split=True):
 def vcgencmd_items(args, isInt=False):
   d = {}
   for l in [x.split("=") for x in vcgencmd(args, split=False).split("\n")]:
+    if len(l) < 2:
+      continue
     if not isInt:
       d[l[0]] = l[1]
     elif l[1][:2] == "0x":
